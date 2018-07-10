@@ -16,6 +16,7 @@
 		81C16E58210D44AD002E2E2D /* Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E57210D44AD002E2E2D /* Overlay.swift */; };
 		81C16E5A210D454D002E2E2D /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E59210D454D002E2E2D /* ScoreView.swift */; };
 		81C16E5C210D48D4002E2E2D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E5B210D48D4002E2E2D /* GameManager.swift */; };
+		81C16E5E210D495E002E2E2D /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E5D210D495E002E2E2D /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		81C16E57210D44AD002E2E2D /* Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlay.swift; sourceTree = "<group>"; };
 		81C16E59210D454D002E2E2D /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		81C16E5B210D48D4002E2E2D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		81C16E5D210D495E002E2E2D /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				81C16E57210D44AD002E2E2D /* Overlay.swift */,
 				81C16E59210D454D002E2E2D /* ScoreView.swift */,
 				81C16E43210D4040002E2E2D /* AppDelegate.swift */,
+				81C16E5D210D495E002E2E2D /* Cell.swift */,
 				81C16E45210D4040002E2E2D /* ViewController.swift */,
 				81C16E47210D4040002E2E2D /* Main.storyboard */,
 				81C16E4A210D4042002E2E2D /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 			files = (
 				81C16E46210D4040002E2E2D /* ViewController.swift in Sources */,
 				81C16E5C210D48D4002E2E2D /* GameManager.swift in Sources */,
+				81C16E5E210D495E002E2E2D /* Cell.swift in Sources */,
 				81C16E56210D43DE002E2E2D /* GridView.swift in Sources */,
 				81C16E58210D44AD002E2E2D /* Overlay.swift in Sources */,
 				81C16E44210D4040002E2E2D /* AppDelegate.swift in Sources */,
