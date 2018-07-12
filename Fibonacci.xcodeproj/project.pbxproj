@@ -19,6 +19,7 @@
 		81C16E5E210D495E002E2E2D /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E5D210D495E002E2E2D /* Cell.swift */; };
 		81C16E60210D4B97002E2E2D /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E5F210D4B97002E2E2D /* Grid.swift */; };
 		81C16E62210D4CF0002E2E2D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E61210D4CF0002E2E2D /* Scene.swift */; };
+		81C16E64210D4ED2002E2E2D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E63210D4ED2002E2E2D /* Tile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		81C16E5D210D495E002E2E2D /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		81C16E5F210D4B97002E2E2D /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		81C16E61210D4CF0002E2E2D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		81C16E63210D4ED2002E2E2D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				81C16E5D210D495E002E2E2D /* Cell.swift */,
 				81C16E5F210D4B97002E2E2D /* Grid.swift */,
 				81C16E61210D4CF0002E2E2D /* Scene.swift */,
+				81C16E63210D4ED2002E2E2D /* Tile.swift */,
 				81C16E45210D4040002E2E2D /* ViewController.swift */,
 				81C16E47210D4040002E2E2D /* Main.storyboard */,
 				81C16E4A210D4042002E2E2D /* Assets.xcassets */,
@@ -163,6 +166,7 @@
 				81C16E56210D43DE002E2E2D /* GridView.swift in Sources */,
 				81C16E58210D44AD002E2E2D /* Overlay.swift in Sources */,
 				81C16E44210D4040002E2E2D /* AppDelegate.swift in Sources */,
+				81C16E64210D4ED2002E2E2D /* Tile.swift in Sources */,
 				81C16E5A210D454D002E2E2D /* ScoreView.swift in Sources */,
 				81C16E62210D4CF0002E2E2D /* Scene.swift in Sources */,
 			);
