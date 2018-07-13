@@ -21,6 +21,7 @@
 		81C16E62210D4CF0002E2E2D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E61210D4CF0002E2E2D /* Scene.swift */; };
 		81C16E64210D4ED2002E2E2D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E63210D4ED2002E2E2D /* Tile.swift */; };
 		81C16E68210D53B6002E2E2D /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E67210D53B6002E2E2D /* GlobalState.swift */; };
+		81C16E6A210D53F1002E2E2D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E69210D53F1002E2E2D /* Position.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		81C16E61210D4CF0002E2E2D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		81C16E63210D4ED2002E2E2D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		81C16E67210D53B6002E2E2D /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
+		81C16E69210D53F1002E2E2D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				81C16E59210D454D002E2E2D /* ScoreView.swift */,
 				81C16E43210D4040002E2E2D /* AppDelegate.swift */,
 				81C16E5D210D495E002E2E2D /* Cell.swift */,
+				81C16E69210D53F1002E2E2D /* Position.swift */,
 				81C16E5F210D4B97002E2E2D /* Grid.swift */,
 				81C16E61210D4CF0002E2E2D /* Scene.swift */,
 				81C16E63210D4ED2002E2E2D /* Tile.swift */,
@@ -164,6 +167,7 @@
 			files = (
 				81C16E46210D4040002E2E2D /* ViewController.swift in Sources */,
 				81C16E5C210D48D4002E2E2D /* GameManager.swift in Sources */,
+				81C16E6A210D53F1002E2E2D /* Position.swift in Sources */,
 				81C16E5E210D495E002E2E2D /* Cell.swift in Sources */,
 				81C16E60210D4B97002E2E2D /* Grid.swift in Sources */,
 				81C16E56210D43DE002E2E2D /* GridView.swift in Sources */,
