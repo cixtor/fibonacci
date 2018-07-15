@@ -24,6 +24,7 @@
 		81C16E6A210D53F1002E2E2D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E69210D53F1002E2E2D /* Position.swift */; };
 		81C16E6C210D567F002E2E2D /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E6B210D567F002E2E2D /* SettingsDetailViewController.swift */; };
 		81C16E6E210D5735002E2E2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E6D210D5735002E2E2D /* SettingsViewController.swift */; };
+		81C16E70210D5A15002E2E2D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E6F210D5A15002E2E2D /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		81C16E69210D53F1002E2E2D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		81C16E6B210D567F002E2E2D /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
 		81C16E6D210D5735002E2E2D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		81C16E6F210D5A15002E2E2D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				81C16E5B210D48D4002E2E2D /* GameManager.swift */,
 				81C16E55210D43DE002E2E2D /* GridView.swift */,
+				81C16E6F210D5A15002E2E2D /* Theme.swift */,
 				81C16E57210D44AD002E2E2D /* Overlay.swift */,
 				81C16E67210D53B6002E2E2D /* GlobalState.swift */,
 				81C16E59210D454D002E2E2D /* ScoreView.swift */,
@@ -183,6 +186,7 @@
 				81C16E6E210D5735002E2E2D /* SettingsViewController.swift in Sources */,
 				81C16E68210D53B6002E2E2D /* GlobalState.swift in Sources */,
 				81C16E64210D4ED2002E2E2D /* Tile.swift in Sources */,
+				81C16E70210D5A15002E2E2D /* Theme.swift in Sources */,
 				81C16E5A210D454D002E2E2D /* ScoreView.swift in Sources */,
 				81C16E62210D4CF0002E2E2D /* Scene.swift in Sources */,
 			);
