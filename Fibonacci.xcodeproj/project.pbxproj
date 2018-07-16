@@ -25,6 +25,7 @@
 		81C16E6C210D567F002E2E2D /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E6B210D567F002E2E2D /* SettingsDetailViewController.swift */; };
 		81C16E6E210D5735002E2E2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E6D210D5735002E2E2D /* SettingsViewController.swift */; };
 		81C16E70210D5A15002E2E2D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E6F210D5A15002E2E2D /* Theme.swift */; };
+		81C16E72210D5A52002E2E2D /* DefaultTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C16E71210D5A52002E2E2D /* DefaultTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		81C16E6B210D567F002E2E2D /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
 		81C16E6D210D5735002E2E2D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		81C16E6F210D5A15002E2E2D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		81C16E71210D5A52002E2E2D /* DefaultTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				81C16E5B210D48D4002E2E2D /* GameManager.swift */,
 				81C16E55210D43DE002E2E2D /* GridView.swift */,
 				81C16E6F210D5A15002E2E2D /* Theme.swift */,
+				81C16E71210D5A52002E2E2D /* DefaultTheme.swift */,
 				81C16E57210D44AD002E2E2D /* Overlay.swift */,
 				81C16E67210D53B6002E2E2D /* GlobalState.swift */,
 				81C16E59210D454D002E2E2D /* ScoreView.swift */,
@@ -179,6 +182,7 @@
 				81C16E6A210D53F1002E2E2D /* Position.swift in Sources */,
 				81C16E5E210D495E002E2E2D /* Cell.swift in Sources */,
 				81C16E60210D4B97002E2E2D /* Grid.swift in Sources */,
+				81C16E72210D5A52002E2E2D /* DefaultTheme.swift in Sources */,
 				81C16E56210D43DE002E2E2D /* GridView.swift in Sources */,
 				81C16E58210D44AD002E2E2D /* Overlay.swift in Sources */,
 				81C16E44210D4040002E2E2D /* AppDelegate.swift in Sources */,
