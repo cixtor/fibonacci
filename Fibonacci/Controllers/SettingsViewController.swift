@@ -11,13 +11,13 @@ import UIKit
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     
-    private var options: [Any] = []
-    private var optionSelections: [Any] = []
-    private var optionsNotes: [Any] = []
+    private var options: [String] = []
+    private var optionSelections: [[String]] = []
+    private var optionsNotes: [String] = []
     
     // MARK: - Set up
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commonInit()
     }
@@ -33,28 +33,28 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         optionsNotes = ["For Fibonacci games, a tile can be joined with a tile that is one level above or below it, but not to one equal to it. For Powers of 3, you need 3 consecutive tiles to be the same to trigger a merge!", "The smaller the board is, the harder! For 5 x 5 board, two tiles will be added every round if you are playing Powers of 2.", "Choose your favorite appearance and get your own feeling of 2048! More (and higher quality) themes are in the works so check back regularly!"]
     }
     
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = GSTATE.scoreBoardColor()
         // Do any additional setup after loading the view.
     }
     
-    func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Settings Detail Segue") {
             let sdvc = segue.destination as? SettingsDetailViewController
             let index: Int? = tableView.indexPathForSelectedRow?.row
             sdvc?.title = options[index ?? 0]
-            sdvc?.options = optionSelections[index ?? 0]
+            sdvc?.options = [optionSelections[index ?? 0]]
             sdvc?.footer = optionsNotes[index ?? 0]
         }
     }
@@ -82,9 +82,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell?.textLabel?.text = "About 2048"
             cell?.detailTextLabel?.text = ""
         } else {
-            cell?.textLabel?.text = options[indexPath.row] as? String
-            let index: Int = Settings.integer(forKey: options[indexPath.row] as? String ?? "")
-            cell?.detailTextLabel?.text = optionSelections[indexPath.row][index] as? String
+            cell?.textLabel?.text = options[indexPath.row]
+            let index: Int = Settings.integer(forKey: options[indexPath.row])
+            cell?.detailTextLabel?.text = optionSelections[indexPath.row][index]
             cell?.detailTextLabel?.textColor = GSTATE.scoreBoardColor()
         }
         if let aCell = cell {
