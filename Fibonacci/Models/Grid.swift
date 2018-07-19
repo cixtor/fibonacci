@@ -12,14 +12,14 @@ typealias IteratorBlock = (M2Position) -> Void
 
 class Grid: NSObject {
     /** The dimension of the grid. */
-    private var dimension: Int = 0
-    
+    var dimension: Int = 0
+
     /** The scene in which the game happens. */
     weak var scene: M2Scene?
-    
+
     /* The 2-D grid that keeps track of all cells and tiles. */
     private var grid: [AnyHashable] = []
-    
+
     /**
      * Initializes a new grid with the given dimension.
      *
@@ -27,10 +27,10 @@ class Grid: NSObject {
      */
     init(dimension: Int) {
         super.init()
-        
+
         // Set up the grid with all empty cells.
         grid = [AnyHashable](repeating: 0, count: dimension)
-        
+
         for i in 0..<dimension {
             var array = [AnyHashable](repeating: 0, count: dimension)
             for j in 0..<dimension {
@@ -38,13 +38,13 @@ class Grid: NSObject {
             }
             grid.append(array)
         }
-        
+
         // Record the dimension of the grid.
         self.dimension = dimension
     }
-    
+
     // MARK: - Iterator
-    
+
     /**
      * Iterates over the grid and calls the block, which takes in the M2Position
      * of the current cell. Has the option to iterate in the reverse order.
@@ -71,9 +71,9 @@ class Grid: NSObject {
             }
         }
     }
-    
+
     // MARK: - Position helpers
-    
+
     /**
      * Returns the cell at the specified position.
      *
@@ -84,10 +84,10 @@ class Grid: NSObject {
         if position.x >= dimension || position.y >= dimension || position.x < 0 || position.y < 0 {
             return nil
         }
-        
+
         return grid[position.x][position.y] as? M2Cell
     }
-    
+
     /**
      * Returns the tile at the specified position.
      *
@@ -98,7 +98,7 @@ class Grid: NSObject {
         let cell: M2Cell? = self.cell(at: position)
         return cell != nil ? cell?.tile : nil
     }
-    
+
     /**
      * Returns a randomly chosen cell that's available.
      *
@@ -106,16 +106,16 @@ class Grid: NSObject {
      */
     func randomAvailableCell() -> M2Cell? {
         let availableCells = self.availableCells()
-        
+
         if availableCells.count != 0 {
             return availableCells[arc4random_uniform(availableCells.count)] as? M2Cell
         }
-        
+
         return nil
     }
-    
+
     // MARK: - Cell availability
-    
+
     /**
      * Whether there are any available cells in the grid.
      *
@@ -124,7 +124,7 @@ class Grid: NSObject {
     func hasAvailableCells() -> Bool {
         return availableCells().count != 0
     }
-    
+
     /**
      * Returns all available cells in an array.
      *
@@ -132,10 +132,10 @@ class Grid: NSObject {
      */
     func availableCells() -> [Any]? {
         var array = [AnyHashable](repeating: 0, count: dimension * dimension)
-        
+
         forEach({ position in
             let cell: M2Cell? = self.cell(at: position)
-            
+
             if cell?.tile == nil {
                 if let aCell = cell {
                     if let aCell = cell {
@@ -144,12 +144,12 @@ class Grid: NSObject {
                 }
             }
         }, reverseOrder: false)
-        
+
         return array
     }
-    
+
     // MARK: - Cell manipulation
-    
+
     /**
      * Inserts a new tile at a randomly chosen position that's available.
      *
@@ -157,7 +157,7 @@ class Grid: NSObject {
      */
     func insertTileAtRandomAvailablePosition(withDelay delay: Bool) {
         let cell: M2Cell? = randomAvailableCell()
-        
+
         if cell != nil {
             let tile = M2Tile.insertNewTile(to: cell)
             scene.addChild(tile)
@@ -167,7 +167,7 @@ class Grid: NSObject {
             tile.runAction(SKAction.sequence([delayAction, SKAction.group([move, scale])]))
         }
     }
-    
+
     /**
      * Removes all tiles in the grid from the scene.
      *
