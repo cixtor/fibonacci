@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         settingsButton.layer.cornerRadius = GSTATE.cornerRadius
         settingsButton.layer.masksToBounds = true
         
-        overlay.hidden = true
+        overlay.isHidden = true
         overlayBackground.isHidden = true
         
         // Configure the view.
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pause Sprite Kit. Otherwise the dismissal of the modal view would lag.
         (view as? SKView)?.isPaused = true
     }
@@ -121,7 +121,7 @@ class ViewController: UIViewController {
     @IBAction func restart(_ sender: Any) {
         hideOverlay()
         updateScore(0)
-        scene.startNewGame()
+        scene?.startNewGame()
     }
     
     @IBAction func keepPlaying(_ sender: Any) {
@@ -134,21 +134,21 @@ class ViewController: UIViewController {
             GSTATE.loadGlobalState()
             updateState()
             updateScore(0)
-            scene.startNewGame()
+            scene?.startNewGame()
         }
     }
     
     func endGame(_ won: Bool) {
-        overlay.hidden = false
+        overlay.isHidden = false
         overlay.alpha = 0
-        overlayBackground.hidden = false
+        overlayBackground.isHidden = false
         overlayBackground.alpha = 0
         
         if !won {
-            overlay.keepPlaying.hidden = true
+            overlay.keepPlaying.isHidden = true
             overlay.message.text = "Game Over"
         } else {
-            overlay.keepPlaying.hidden = false
+            overlay.keepPlaying.isHidden = false
             overlay.message.text = "You Win!"
         }
         
@@ -162,8 +162,8 @@ class ViewController: UIViewController {
         overlay.center = CGPoint(x: CGFloat(GSTATE.horizontalOffset + side / 2), y: verticalOffset - CGFloat(side / 2))
         
         UIView.animate(withDuration: 0.5, delay: 1.5, options: .curveEaseInOut, animations: {
-            overlay.alpha = 1
-            overlayBackground.alpha = 1
+            self.overlay.alpha = 1
+            self.overlayBackground.alpha = 1
         }) { finished in
             // Freeze the current game.
             (self.view as? SKView)?.isPaused = true
@@ -173,13 +173,13 @@ class ViewController: UIViewController {
     func hideOverlay() {
         (view as? SKView)?.isPaused = false
         
-        if !overlay.hidden {
+        if !overlay.isHidden {
             UIView.animate(withDuration: 0.5, animations: {
-                overlay.alpha = 0
-                overlayBackground.alpha = 0
+                self.overlay.alpha = 0
+                self.overlayBackground.alpha = 0
             }) { finished in
-                overlay.hidden = true
-                overlayBackground.hidden = true
+                self.overlay.isHidden = true
+                self.overlayBackground.isHidden = true
             }
         }
     }
