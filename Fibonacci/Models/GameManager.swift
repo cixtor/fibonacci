@@ -201,7 +201,7 @@ class GameManager: NSObject {
             let tile: Tile? = grid.tile(at: position)
             if tile != nil {
                 tile?.commitPendingActions()
-                if tile?.level >= GSTATE.winningLevel {
+                if tile?.level >= GSTATE.winningLevel() {
                     won = true
                 }
             }

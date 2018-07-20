@@ -30,7 +30,7 @@ class Tile: SKShapeNode {
         super.init()
         
         // Layout of the tile.
-        let rect = CGRect(x: 0, y: 0, width: CGFloat(GSTATE.tileSize), height: CGFloat(GSTATE.tileSize))
+        let rect = CGRect(x: 0, y: 0, width: CGFloat(GSTATE.tileSize()), height: CGFloat(GSTATE.tileSize()))
         let rectPath = CGPathCreateWithRoundedRect(rect, GSTATE.cornerRadius, GSTATE.cornerRadius, nil)
         path = rectPath
         lineWidth = 0
@@ -40,7 +40,7 @@ class Tile: SKShapeNode {
         
         // Set up value label.
         value = SKLabelNode(fontNamed: GSTATE.boldFontName())
-        value.position = CGPoint(x: Int(GSTATE.tileSize) / 2, y: Int(GSTATE.tileSize) / 2)
+        value.position = CGPoint(x: Int(GSTATE.tileSize()) / 2, y: Int(GSTATE.tileSize()) / 2)
         value.horizontalAlignmentMode = .center
         value.verticalAlignmentMode = .center
         addChild(value)
@@ -71,7 +71,7 @@ class Tile: SKShapeNode {
         // scaling the tile, SpriteKit does so from the origin, not the center. So we have to scale
         // the tile while moving it back to its normal position to achieve the "pop out" effect.
         let origin: CGPoint = GSTATE.locationOfPosition(cell?.position)
-        tile.position = CGPoint(x: origin.x + Int(GSTATE.tileSize) / 2, y: origin.y + Int(GSTATE.tileSize) / 2)
+        tile.position = CGPoint(x: origin.x + Int(GSTATE.tileSize()) / 2, y: origin.y + Int(GSTATE.tileSize()) / 2)
         tile.setScale(0)
         cell?.tile = tile
         return tile
@@ -229,7 +229,7 @@ class Tile: SKShapeNode {
     // MARK: - SKAction helpers
     
     func pop() -> SKAction? {
-        let d: CGFloat = 0.15 * Double(GSTATE.tileSize)
+        let d: CGFloat = 0.15 * Double(GSTATE.tileSize())
         let wait = SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration() / 3))
         let enlarge = SKAction.scale(to: 1.3, duration: GSTATE.animationDuration() / 1.5)
         let move = SKAction.move(by: CGVectorMake(-d, -d), duration: GSTATE.animationDuration() / 1.5)

@@ -162,7 +162,7 @@ class Grid: NSObject {
             let tile = M2Tile.insertNewTile(to: cell)
             scene.addChild(tile)
             let delayAction = delay ? SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration() * 3)) : SKAction.wait(forDuration: 0)
-            let move = SKAction.move(by: CGVectorMake(Int(-GSTATE.tileSize) / 2, Int(-GSTATE.tileSize) / 2), duration: TimeInterval(GSTATE.animationDuration()))
+            let move = SKAction.move(by: CGVectorMake(Int(-GSTATE.tileSize()) / 2, Int(-GSTATE.tileSize()) / 2), duration: TimeInterval(GSTATE.animationDuration()))
             let scale = SKAction.scale(to: 1, duration: TimeInterval(GSTATE.animationDuration()))
             tile.runAction(SKAction.sequence([delayAction, SKAction.group([move, scale])]))
         }
