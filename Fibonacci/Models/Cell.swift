@@ -10,25 +10,23 @@ import Foundation
 
 class Cell: NSObject {
     /** The position of the cell. */
-    var position: M2Position?
+    var position: Position?
     
     /** The tile in the cell, if any. */
-    var tile: M2Tile?
+    var tile: Tile?
     
     /**
      * Initialize a M2Cell at the specified position with no tile in it.
      *
      * @param position The position of the cell.
      */
-    init(position: M2Position) {
+    init(position: Position) {
         super.init()
         self.position = position
         tile = nil
     }
     
-    func setTile(_ tile: M2Tile?) {
-        _tile = tile
-        
+    func setTile(_ tile: Tile?) {
         if tile != nil {
             tile?.cell = self
         }
