@@ -6,11 +6,16 @@
 //  Copyright © 2018 yorman. All rights reserved.
 //
 
-typealias Position = var x: Int var y: Int
+struct Position {
+    var x: Int = 0
+    var y: Int = 0
+    
+    init(_ x: Int, _ y: Int) {
+        self.x = x
+        self.y = y
+    }
+}
 
-func PositionMake(x: Int, _ y: Int) -> Position {
-    var position: Position
-    position.x = x
-    position.y = y
-    return position
+func PositionMake(x: Int, y: Int) -> Position {
+    return Position(x, y)
 }
