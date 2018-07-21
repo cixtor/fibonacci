@@ -25,14 +25,14 @@ enum GameType : Int {
 }
 
 class GlobalState: NSObject {
-    private var dimension: Int = 0
-    private var borderWidth: Int = 0
-    private var cornerRadius: Int = 0
-    private var animationDuration: TimeInterval = 0.0
-    private var gameType: GameType?
-    private var hOffset: Int = 0
-    private var vOffset: Int = 0
-    private var theme: Int = 0
+    var dimension: Int = 0
+    var borderWidth: Int = 0
+    var cornerRadius: Int = 0
+    var animationDuration: TimeInterval = 0.0
+    var gameType: GameType?
+    var hOffset: Int = 0
+    var vOffset: Int = 0
+    var theme: Int = 0
 
     var needRefresh = false
 

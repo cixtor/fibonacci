@@ -191,7 +191,7 @@ class Tile: SKShapeNode {
      * @param cell The destination cell.
      */
     func move(to cell: M2Cell?) {
-        pendingActions.append(SKAction.move(to: GSTATE.locationOfPosition(cell?.position), duration: TimeInterval(GSTATE.animationDuration())))
+        pendingActions.append(SKAction.move(to: GSTATE.locationOfPosition(cell?.position), duration: TimeInterval(GSTATE.animationDuration)))
         self.cell.tile = nil
         cell?.tile = self
     }
@@ -203,7 +203,7 @@ class Tile: SKShapeNode {
      */
     func remove(animated: Bool) {
         if animated {
-            pendingActions.append(SKAction.scale(to: 0, duration: TimeInterval(GSTATE.animationDuration())))
+            pendingActions.append(SKAction.scale(to: 0, duration: TimeInterval(GSTATE.animationDuration)))
         }
         
         pendingActions.append(SKAction.removeFromParent())
@@ -218,7 +218,7 @@ class Tile: SKShapeNode {
     }
     
     func removeWithDelay() {
-        let wait = SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration()))
+        let wait = SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration))
         let remove = SKAction.removeFromParent()
         
         run(SKAction.sequence([wait, remove])) {
@@ -230,11 +230,11 @@ class Tile: SKShapeNode {
     
     func pop() -> SKAction? {
         let d: CGFloat = 0.15 * Double(GSTATE.tileSize())
-        let wait = SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration() / 3))
-        let enlarge = SKAction.scale(to: 1.3, duration: GSTATE.animationDuration() / 1.5)
-        let move = SKAction.move(by: CGVectorMake(-d, -d), duration: GSTATE.animationDuration() / 1.5)
-        let restore = SKAction.scale(to: 1, duration: GSTATE.animationDuration() / 1.5)
-        let moveBack = SKAction.move(by: CGVectorMake(d, d), duration: GSTATE.animationDuration() / 1.5)
+        let wait = SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration / 3))
+        let enlarge = SKAction.scale(to: 1.3, duration: GSTATE.animationDuration / 1.5)
+        let move = SKAction.move(by: CGVectorMake(-d, -d), duration: GSTATE.animationDuration / 1.5)
+        let restore = SKAction.scale(to: 1, duration: GSTATE.animationDuration / 1.5)
+        let moveBack = SKAction.move(by: CGVectorMake(d, d), duration: GSTATE.animationDuration / 1.5)
         
         return SKAction.sequence([wait, SKAction.group([enlarge, move]), SKAction.group([restore, moveBack])])
     }

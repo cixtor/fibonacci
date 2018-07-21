@@ -16,6 +16,6 @@ struct Position {
     }
 }
 
-func PositionMake(x: Int, y: Int) -> Position {
+func PositionMake(_ x: Int, _ y: Int) -> Position {
     return Position(x, y)
 }
