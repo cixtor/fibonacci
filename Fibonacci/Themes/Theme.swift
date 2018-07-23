@@ -58,7 +58,7 @@ class Theme: NSObject {
      *
      * @param type The index of the theme.
      */
-    class func themeClass(for type: Int) -> T.Type {
+    class func themeClass(for type: Int) -> AnyClass {
         switch type {
         case 1:
             return VibrantTheme.self
