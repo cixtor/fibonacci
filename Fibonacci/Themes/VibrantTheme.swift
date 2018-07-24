@@ -9,7 +9,7 @@
 import UIKit
 
 class VibrantTheme: Theme, ThemeProtocol {
-    class func color(forLevel level: Int) -> UIColor? {
+    class func color(forLevel level: Int) -> UIColor {
         switch level {
         case 1:
             return UIColor.RGB(254, 223, 180)
@@ -46,7 +46,7 @@ class VibrantTheme: Theme, ThemeProtocol {
         }
     }
 
-    class func textColor(forLevel level: Int) -> UIColor? {
+    class func textColor(forLevel level: Int) -> UIColor {
         switch level {
         case 1, 2:
             return UIColor.RGB(150, 110, 90)
@@ -57,27 +57,27 @@ class VibrantTheme: Theme, ThemeProtocol {
         }
     }
 
-    class func backgroundColor() -> UIColor? {
+    class func backgroundColor() -> UIColor {
         return UIColor.RGB(240, 240, 240)
     }
 
-    class func boardColor() -> UIColor? {
+    class func boardColor() -> UIColor {
         return UIColor.RGB(240, 240, 240)
     }
 
-    class func scoreBoardColor() -> UIColor? {
+    class func scoreBoardColor() -> UIColor {
         return UIColor.RGB(253, 144, 38)
     }
 
-    class func buttonColor() -> UIColor? {
+    class func buttonColor() -> UIColor {
         return UIColor.RGB(205, 35, 85)
     }
 
-    class func boldFontName() -> String? {
+    class func boldFontName() -> String {
         return "AvenirNext-DemiBold"
     }
 
-    class func regularFontName() -> String? {
+    class func regularFontName() -> String {
         return "AvenirNext-Regular"
     }
 }

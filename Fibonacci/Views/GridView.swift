@@ -50,7 +50,7 @@ class GridView: UIView {
             frame.size = CGSize(width: CGFloat(GSTATE.tileSize()), height: CGFloat(GSTATE.tileSize()))
             frame.origin = CGPoint(x: point.x, y: UIScreen.main.bounds.size.height - point.y - CGFloat(GSTATE.tileSize()))
             layer.frame = frame
-            layer.backgroundColor = GSTATE.boardColor()?.cgColor
+            layer.backgroundColor = GSTATE.boardColor().cgColor
             layer.cornerRadius = CGFloat(GSTATE.cornerRadius)
             layer.masksToBounds = true
             backgroundView.layer.addSublayer(layer)
@@ -69,7 +69,7 @@ class GridView: UIView {
         backgroundView.backgroundColor = UIColor.clear
         backgroundView.isOpaque = false
         let view = GridView()
-        view.backgroundColor = GSTATE.backgroundColor()?.withAlphaComponent(0.8)
+        view.backgroundColor = GSTATE.backgroundColor().withAlphaComponent(0.8)
         backgroundView.addSubview(view)
         return GridView.snapshot(with: backgroundView)
     }

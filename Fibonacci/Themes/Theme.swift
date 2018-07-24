@@ -20,36 +20,36 @@ extension UIColor {
 
 protocol ThemeProtocol {
     /** The background color of the board base. */
-    static func boardColor() -> UIColor?
+    static func boardColor() -> UIColor
 
     /** The background color of the entire scene. */
-    static func backgroundColor() -> UIColor?
+    static func backgroundColor() -> UIColor
 
     /** The background color of the score board. */
-    static func scoreBoardColor() -> UIColor?
+    static func scoreBoardColor() -> UIColor
 
     /** The background color of the button. */
-    static func buttonColor() -> UIColor?
+    static func buttonColor() -> UIColor
 
     /** The name of the bold font. */
-    static func boldFontName() -> String?
+    static func boldFontName() -> String
 
     /** The name of the regular font. */
-    static func regularFontName() -> String?
+    static func regularFontName() -> String
 
     /**
      * The color for the given level. If level is greater than 15, return the color for Level 15.
      *
      * @param level The level of the tile.
      */
-    static func color(forLevel level: Int) -> UIColor?
+    static func color(forLevel level: Int) -> UIColor
 
     /**
      * The text color for the given level. If level is greater than 15, return the color for Level 15.
      *
      * @param level The level of the tile.
      */
-    static func textColor(forLevel level: Int) -> UIColor?
+    static func textColor(forLevel level: Int) -> UIColor
 }
 
 class Theme: NSObject {

@@ -183,31 +183,31 @@ class GlobalState: NSObject {
      * @param level The level we are interested in.
      * @return The color of the level.
      */
-    func textColor(forLevel level: Int) -> UIColor? {
+    func textColor(forLevel level: Int) -> UIColor {
         return Theme.themeClass(for: theme).textColor(forLevel: level)
     }
 
-    func backgroundColor() -> UIColor? {
+    func backgroundColor() -> UIColor {
         return Theme.themeClass(for: theme).backgroundColor
     }
 
-    func boardColor() -> UIColor? {
+    func boardColor() -> UIColor {
         return Theme.themeClass(for: theme).boardColor()
     }
 
-    func scoreBoardColor() -> UIColor? {
+    func scoreBoardColor() -> UIColor {
         return Theme.themeClass(for: theme).scoreBoardColor()
     }
 
-    func buttonColor() -> UIColor? {
+    func buttonColor() -> UIColor {
         return Theme.themeClass(for: theme).buttonColor()
     }
 
-    func boldFontName() -> String? {
+    func boldFontName() -> String {
         return Theme.themeClass(for: theme).boldFontName()
     }
 
-    func regularFontName() -> String? {
+    func regularFontName() -> String {
         return Theme.themeClass(for: theme).regularFontName()
     }
 
@@ -243,7 +243,10 @@ class GlobalState: NSObject {
      * @return The location in points, relative to the grid.
      */
     func locationOf(_ position: Position) -> CGPoint {
-        return CGPoint(x: xLocationOf(position) + hOffset, y: yLocationOf(position) + vOffset)
+        return CGPoint(
+            x: xLocationOf(position) + CGFloat(hOffset),
+            y: yLocationOf(position) + vOffset
+        )
     }
 
     /**
@@ -253,7 +256,11 @@ class GlobalState: NSObject {
      * @return The x location in points, relative to the grid.
      */
     func xLocationOf(_ position: Position) -> CGFloat {
-        return position.y * (CGFloat(GSTATE.tileSize()) + GSTATE.borderWidth) + GSTATE.borderWidth
+        return CGFloat(
+            position.y
+            * (GSTATE.tileSize() + GSTATE.borderWidth)
+            + GSTATE.borderWidth
+        )
     }
 
     /**
@@ -263,6 +270,10 @@ class GlobalState: NSObject {
      * @return The y location in points, relative to the grid.
      */
     func yLocationOf(_ position: Position) -> CGFloat {
-        return position.x * (CGFloat(GSTATE.tileSize()) + GSTATE.borderWidth) + GSTATE.borderWidth
+        return CGFloat(
+            position.x
+            * (GSTATE.tileSize() + GSTATE.borderWidth)
+            + GSTATE.borderWidth
+        )
     }
 }

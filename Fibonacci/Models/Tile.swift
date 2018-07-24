@@ -79,7 +79,7 @@ class Tile: SKShapeNode {
      * @param cell The cell to insert tile into.
      * @return The tile created.
      */
-    class func insertNewTile(to cell: Cell?) -> Tile? {
+    class func insertNewTile(to cell: Cell?) -> Tile {
         let tile = Tile()
         // The initial position of the tile is at the center of its cell.
         //

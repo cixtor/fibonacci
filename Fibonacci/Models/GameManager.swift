@@ -63,12 +63,12 @@ class GameManager: NSObject {
             grid?.removeAllTiles(animated: false)
         }
 
-        if !grid || grid.dimension != GSTATE.dimension {
+        if !(grid != nil) || grid?.dimension != GSTATE.dimension {
             grid = Grid(dimension: GSTATE.dimension)
-            grid.scene = scene
+            grid?.scene = scene!
         }
 
-        scene?.loadBoard(withGrid: grid)
+        scene?.loadBoard(with: grid)
 
         // Set the initial state for the game.
         score = 0
@@ -85,7 +85,7 @@ class GameManager: NSObject {
         // If the scene only has one child (the board), we can proceed with
         // adding new tiles since all old ones are removed. After adding new
         // tiles, remove the displaylink.
-        if grid.scene.children.count <= 1 {
+        if (grid?.scene.children.count)! <= 1 {
             grid?.insertTileAtRandomAvailablePosition(withDelay: false)
             grid?.insertTileAtRandomAvailablePosition(withDelay: false)
             addTileDisplayLink?.invalidate()
@@ -96,7 +96,7 @@ class GameManager: NSObject {
 
     /**
      * Moves all movable tiles to the desired direction, then add one more tile
-     * to the grid. Also refreshes score and checks game status (won/lost).
+     * to the grid?. Also refreshes score and checks game status (won/lost).
      *
      * @param direction The direction of the move (up, right, down, left).
      */
@@ -108,23 +108,23 @@ class GameManager: NSObject {
         let unit: Int = reverse ? 1 : -1
 
         if direction == Direction.up || direction == Direction.down {
-            grid.forEach({ position in
-                if (tile = grid.tile(at: position)) != nil {
+            grid?.forEach({ position in
+                if (tile = grid?.tile(at: position)) != nil {
                     // Find farthest position to move to.
                     var target = position.x
                     var i = position.x + unit
 
-                    while iterate(i, reverse, grid.dimension, -1) {
-                        let t: Tile? = grid.tile(atPosition: PositionMake(i, position.y))
+                    while iterate(value: i, countUp: reverse, upper: (grid?.dimension)!, lower: -1) {
+                        let t: Tile? = grid?.tile(at: PositionMake(i, position.y))
 
                         // Empty cell; we can move at least to here.
                         if t == nil {
                             target = i
                         } else {
                             var level: Int = 0
-                            if GSTATE.gameType == M2GameTypePowerOf3 {
-                                let further: M2Position = PositionMake(i + unit, position.y)
-                                let ft: Tile? = grid.tile(at: further)
+                            if GSTATE.gameType == GameType.powerOf3 {
+                                let further: Position = PositionMake(i + unit, position.y)
+                                let ft: Tile? = grid?.tile(at: further)
                                 if ft != nil {
                                     level = tile?.merge3(to: t, andTile: ft) ?? 0
                                 }
@@ -145,27 +145,27 @@ class GameManager: NSObject {
 
                     // The current tile is movable.
                     if target != position.x {
-                        tile?.move(toCell: grid.cell(atPosition: PositionMake(target, position.y)))
+                        tile?.move(to: grid?.cell(at: PositionMake(target, position.y)))
                         pendingScore += 1
                     }
                 }
             }, reverseOrder: reverse)
         } else {
-            grid.forEach({ position in
-                if (tile = grid.tile(at: position)) != nil {
+            grid?.forEach({ position in
+                if (tile = grid?.tile(at: position)) != nil {
                     var target = position.y
                     var i = position.y + unit
 
-                    while iterate(i, reverse, grid.dimension, -1) {
-                        let t: Tile? = grid.tile(atPosition: PositionMake(position.x, i))
+                    while iterate(value: i, countUp: reverse, upper: (grid?.dimension)!, lower: -1) {
+                        let t: Tile? = grid?.tile(at: PositionMake(position.x, i))
 
                         if t == nil {
                             target = i
                         } else {
                             var level: Int = 0
-                            if GSTATE.gameType == M2GameTypePowerOf3 {
-                                let further: M2Position = PositionMake(position.x, i + unit)
-                                let ft: Tile? = grid.tile(at: further)
+                            if GSTATE.gameType == GameType.powerOf3 {
+                                let further: Position = PositionMake(position.x, i + unit)
+                                let ft: Tile? = grid?.tile(at: further)
                                 if ft != nil {
                                     level = tile?.merge3(to: t, andTile: ft) ?? 0
                                 }
@@ -184,7 +184,7 @@ class GameManager: NSObject {
 
                     // The current tile is movable.
                     if target != position.y {
-                        tile?.move(toCell: grid.cell(atPosition: PositionMake(position.x, target)))
+                        tile?.move(to: grid?.cell(at: PositionMake(position.x, target)))
                         pendingScore += 1
                     }
                 }
@@ -197,11 +197,11 @@ class GameManager: NSObject {
         }
 
         // Commit tile movements.
-        grid.forEach({ position in
-            let tile: Tile? = grid.tile(at: position)
+        grid?.forEach({ position in
+            let tile: Tile? = grid?.tile(at: position)
             if tile != nil {
                 tile?.commitPendingActions()
-                if tile?.level >= GSTATE.winningLevel() {
+                if (tile?.level)! >= GSTATE.winningLevel() {
                     won = true
                 }
             }
@@ -215,18 +215,18 @@ class GameManager: NSObject {
             // We set `keepPlaying` to YES. If the user decides not to keep playing,
             // we will be starting a new game, so the current state is no longer relevant.
             keepPlaying = true
-            grid.scene.controller.endGame(true)
+            grid?.scene.controller?.endGame(true)
         }
 
-        // Add one more tile to the grid.
+        // Add one more tile to the grid?.
         grid?.insertTileAtRandomAvailablePosition(withDelay: true)
 
-        if GSTATE.dimension == 5 && GSTATE.gameType == GameType.PowerOf2 {
+        if GSTATE.dimension == 5 && GSTATE.gameType == GameType.powerOf2 {
             grid?.insertTileAtRandomAvailablePosition(withDelay: true)
         }
 
         if !movesAvailable() {
-            grid.scene.controller.endGame(false)
+            grid?.scene.controller?.endGame(false)
         }
     }
 
@@ -235,7 +235,7 @@ class GameManager: NSObject {
     func materializePendingScore() {
         score += pendingScore
         pendingScore = 0
-        grid.scene.controller.updateScore(score)
+        grid?.scene.controller?.updateScore(score)
     }
 
     // MARK: - State checkers
@@ -267,7 +267,7 @@ class GameManager: NSObject {
         for i in 0..<(grid?.dimension)! {
             for j in 0..<(grid?.dimension)! {
                 // Due to symmetry, we only need to check for tiles to the right and down.
-                let tile: Tile? = grid.tile(atPosition: PositionMake(i, j))
+                let tile: Tile? = grid?.tile(at: PositionMake(i, j))
 
                 // Continue with next iteration if the tile does not exist. Note that this means that
                 // the cell is empty. For our current usage, it will never happen. It is only in place
@@ -276,12 +276,19 @@ class GameManager: NSObject {
                     continue
                 }
 
-                if GSTATE.gameType == GameType.PowerOf3 {
-                    if (tile?.canMerge(withTile: grid.tile(atPosition: PositionMake(i + 1, j))) != nil && tile?.canMerge(withTile: grid.tile(atPosition: PositionMake(i + 2, j))) != nil) || (tile?.canMerge(withTile: grid.tile(atPosition: PositionMake(i, j + 1))) != nil && tile?.canMerge(withTile: grid.tile(atPosition: PositionMake(i, j + 2))) != nil) {
+                if GSTATE.gameType == GameType.powerOf3 {
+                    if (
+                        tile?.canMerge(with: grid?.tile(at: PositionMake(i + 1, j))) != nil
+                        && tile?.canMerge(with: grid?.tile(at: PositionMake(i + 2, j))) != nil
+                    ) || (
+                        tile?.canMerge(with: grid?.tile(at: PositionMake(i, j + 1))) != nil
+                        && tile?.canMerge(with: grid?.tile(at: PositionMake(i, j + 2))) != nil
+                    ) {
                         return true
                     }
                 } else {
-                    if tile?.canMerge(withTile: grid.tile(atPosition: PositionMake(i + 1, j))) != nil || tile?.canMerge(withTile: grid.tile(atPosition: PositionMake(i, j + 1))) != nil {
+                    if tile?.canMerge(with: grid?.tile(at: PositionMake(i + 1, j))) != nil
+                    || tile?.canMerge(with: grid?.tile(at: PositionMake(i, j + 1))) != nil {
                         return true
                     }
                 }

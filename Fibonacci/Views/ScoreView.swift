@@ -30,7 +30,7 @@ class ScoreView: UIView {
     
     func updateAppearance() {
         backgroundColor = GSTATE.scoreBoardColor()
-        title.font = UIFont(name: GSTATE.boldFontName()!, size: 12)
-        score.font = UIFont(name: GSTATE.regularFontName()!, size: 16)
+        title.font = UIFont(name: GSTATE.boldFontName(), size: 12)
+        score.font = UIFont(name: GSTATE.regularFontName(), size: 16)
     }
 }

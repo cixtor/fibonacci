@@ -19,19 +19,19 @@ class ViewController: UIViewController {
     @IBOutlet var overlay: Overlay!
     @IBOutlet var overlayBackground: UIImageView!
 
-    private var scene: Scene?
+    private var scene: Scene = Scene.init(size: CGSize.zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        updateState()
+        self.updateState()
 
         bestView.score.text = "\(Settings.integer(forKey: "Best Score"))"
 
-        restartButton.layer.cornerRadius = GSTATE.cornerRadius
+        restartButton.layer.cornerRadius = CGFloat(GSTATE.cornerRadius)
         restartButton.layer.masksToBounds = true
 
-        settingsButton.layer.cornerRadius = GSTATE.cornerRadius
+        settingsButton.layer.cornerRadius = CGFloat(GSTATE.cornerRadius)
         settingsButton.layer.masksToBounds = true
 
         overlay.isHidden = true
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         // Present the scene.
         skView?.presentScene(scene)
 
-        updateScore(0)
+        self.updateScore(0)
 
         scene.startNewGame()
 
@@ -121,7 +121,7 @@ class ViewController: UIViewController {
     @IBAction func restart(_ sender: Any) {
         hideOverlay()
         updateScore(0)
-        scene?.startNewGame()
+        scene.startNewGame()
     }
 
     @IBAction func keepPlaying(_ sender: Any) {
@@ -131,10 +131,10 @@ class ViewController: UIViewController {
     @IBAction func done(_ segue: UIStoryboardSegue) {
         (view as? SKView)?.isPaused = false
         if GSTATE.needRefresh {
-            GSTATE.loadGlobalState()
+            GSTATE.load()
             updateState()
             updateScore(0)
-            scene?.startNewGame()
+            scene.startNewGame()
         }
     }
 
@@ -156,8 +156,8 @@ class ViewController: UIViewController {
         overlayBackground.image = GridView.gridImageWithOverlay()
 
         // Center the overlay in the board.
-        let vertical: CGFloat = UIScreen.main.bounds.size.height - GSTATE.vOffset
-        let side = Int(GSTATE.dimension * (CGFloat(GSTATE.tileSize()) + GSTATE.borderWidth) + GSTATE.borderWidth)
+        let vertical: CGFloat = UIScreen.main.bounds.size.height - CGFloat(GSTATE.vOffset)
+        let side = Int(GSTATE.dimension * (GSTATE.tileSize() + GSTATE.borderWidth) + GSTATE.borderWidth)
         overlay.center = CGPoint(x: CGFloat(GSTATE.hOffset + side / 2), y: vertical - CGFloat(side / 2))
 
         UIView.animate(withDuration: 0.5, delay: 1.5, options: .curveEaseInOut, animations: {

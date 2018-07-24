@@ -16,10 +16,10 @@ class Grid: NSObject {
     var dimension: Int = 0
 
     /* The 2-D grid that keeps track of all cells and tiles. */
-    var grid : [[Cell]]
+    var grid : [[Cell]] = []
 
     /** The scene in which the game happens. */
-    weak var scene: Scene?
+    var scene: Scene = Scene(size: CGSize.zero)
 
     /**
      * Initializes a new grid with the given dimension.
@@ -167,7 +167,7 @@ class Grid: NSObject {
                 duration: TimeInterval(GSTATE.animationDuration)
             )
             let scale = SKAction.scale(to: 1, duration: TimeInterval(GSTATE.animationDuration))
-            tile.runAction(SKAction.sequence([delayAction, SKAction.group([move, scale])]))
+            tile.run(SKAction.sequence([delayAction, SKAction.group([move, scale])]))
         }
     }
 
