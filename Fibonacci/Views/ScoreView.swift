@@ -12,7 +12,7 @@ class ScoreView: UIView {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var score: UILabel!
     
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
@@ -23,14 +23,14 @@ class ScoreView: UIView {
     }
     
     func commonInit() {
-        layer.cornerRadius = GSTATE.cornerRadius
+        layer.cornerRadius = CGFloat(GSTATE.cornerRadius)
         layer.masksToBounds = true
         backgroundColor = UIColor.green
     }
     
     func updateAppearance() {
         backgroundColor = GSTATE.scoreBoardColor()
-        title.font = UIFont(name: GSTATE.boldFontName(), size: 12)
-        score.font = UIFont(name: GSTATE.regularFontName(), size: 16)
+        title.font = UIFont(name: GSTATE.boldFontName()!, size: 12)
+        score.font = UIFont(name: GSTATE.regularFontName()!, size: 16)
     }
 }
