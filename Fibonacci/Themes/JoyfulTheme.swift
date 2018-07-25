@@ -9,7 +9,7 @@
 import UIKit
 
 class JoyfulTheme: ThemeProtocol {
-    class func color(forLevel level: Int) -> UIColor {
+    func color(forLevel level: Int) -> UIColor {
         switch level {
         case 1:
             return UIColor.RGB(236, 243, 251)
@@ -46,7 +46,7 @@ class JoyfulTheme: ThemeProtocol {
         }
     }
 
-    class func textColor(forLevel level: Int) -> UIColor {
+    func textColor(forLevel level: Int) -> UIColor {
         switch level {
         case 1:
             return UIColor.RGB(104, 119, 131)
@@ -81,27 +81,27 @@ class JoyfulTheme: ThemeProtocol {
         }
     }
 
-    class func backgroundColor() -> UIColor {
+    func backgroundColor() -> UIColor {
         return UIColor.RGB(255, 254, 237)
     }
 
-    class func boardColor() -> UIColor {
+    func boardColor() -> UIColor {
         return UIColor.RGB(255, 254, 237)
     }
 
-    class func scoreBoardColor() -> UIColor {
+    func scoreBoardColor() -> UIColor {
         return UIColor.RGB(243, 168, 40)
     }
 
-    class func buttonColor() -> UIColor {
+    func buttonColor() -> UIColor {
         return UIColor.RGB(242, 79, 46)
     }
 
-    class func boldFontName() -> String {
+    func boldFontName() -> String {
         return "AvenirNext-DemiBold"
     }
 
-    class func regularFontName() -> String {
+    func regularFontName() -> String {
         return "AvenirNext-Regular"
     }
 }

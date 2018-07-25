@@ -18,38 +18,38 @@ extension UIColor {
     }
 }
 
-protocol ThemeProtocol {
+protocol ThemeProtocol /* NSObjectProtocol */ {
     /** The background color of the board base. */
-    static func boardColor() -> UIColor
+    func boardColor() -> UIColor
 
     /** The background color of the entire scene. */
-    static func backgroundColor() -> UIColor
+    func backgroundColor() -> UIColor
 
     /** The background color of the score board. */
-    static func scoreBoardColor() -> UIColor
+    func scoreBoardColor() -> UIColor
 
     /** The background color of the button. */
-    static func buttonColor() -> UIColor
+    func buttonColor() -> UIColor
 
     /** The name of the bold font. */
-    static func boldFontName() -> String
+    func boldFontName() -> String
 
     /** The name of the regular font. */
-    static func regularFontName() -> String
+    func regularFontName() -> String
 
     /**
      * The color for the given level. If level is greater than 15, return the color for Level 15.
      *
      * @param level The level of the tile.
      */
-    static func color(forLevel level: Int) -> UIColor
+    func color(forLevel level: Int) -> UIColor
 
     /**
      * The text color for the given level. If level is greater than 15, return the color for Level 15.
      *
      * @param level The level of the tile.
      */
-    static func textColor(forLevel level: Int) -> UIColor
+    func textColor(forLevel level: Int) -> UIColor
 }
 
 class Theme: NSObject {
@@ -58,14 +58,14 @@ class Theme: NSObject {
      *
      * @param type The index of the theme.
      */
-    class func themeClass(for type: Int) -> AnyClass {
+    class func themeClass(for type: Int) -> ThemeProtocol {
         switch type {
         case 1:
-            return VibrantTheme.self
+            return VibrantTheme()
         case 2:
-            return JoyfulTheme.self
+            return JoyfulTheme()
         default:
-            return DefaultTheme.self
+            return DefaultTheme()
         }
     }
 }

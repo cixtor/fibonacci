@@ -188,7 +188,7 @@ class GlobalState: NSObject {
     }
 
     func backgroundColor() -> UIColor {
-        return Theme.themeClass(for: theme).backgroundColor
+        return Theme.themeClass(for: theme).backgroundColor()
     }
 
     func boardColor() -> UIColor {
@@ -245,7 +245,7 @@ class GlobalState: NSObject {
     func locationOf(_ position: Position) -> CGPoint {
         return CGPoint(
             x: xLocationOf(position) + CGFloat(hOffset),
-            y: yLocationOf(position) + vOffset
+            y: yLocationOf(position) + CGFloat(vOffset)
         )
     }
 
