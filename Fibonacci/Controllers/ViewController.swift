@@ -6,8 +6,8 @@
 //  Copyright © 2018 yorman. All rights reserved.
 //
 
-import SpriteKit
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController {
     @IBOutlet var restartButton: UIButton!
@@ -119,17 +119,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func restart(_ sender: Any) {
-        hideOverlay()
-        updateScore(0)
+        self.hideOverlay()
+        self.updateScore(0)
+
         scene.startNewGame()
     }
 
     @IBAction func keepPlaying(_ sender: Any) {
-        hideOverlay()
+        self.hideOverlay()
     }
 
     @IBAction func done(_ segue: UIStoryboardSegue) {
         (view as? SKView)?.isPaused = false
+
         if GSTATE.needRefresh {
             GSTATE.load()
             updateState()
@@ -139,8 +141,9 @@ class ViewController: UIViewController {
     }
 
     func endGame(_ won: Bool) {
-        overlay.isHidden = false
         overlay.alpha = 0
+        overlay.isHidden = false
+
         overlayBackground.isHidden = false
         overlayBackground.alpha = 0
 
@@ -163,7 +166,7 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 1.5, options: .curveEaseInOut, animations: {
             self.overlay.alpha = 1
             self.overlayBackground.alpha = 1
-        }) { finished in
+        }) { _ in
             // Freeze the current game.
             (self.view as? SKView)?.isPaused = true
         }
@@ -176,7 +179,7 @@ class ViewController: UIViewController {
             UIView.animate(withDuration: 0.5, animations: {
                 self.overlay.alpha = 0
                 self.overlayBackground.alpha = 0
-            }) { finished in
+            }) { _ in
                 self.overlay.isHidden = true
                 self.overlayBackground.isHidden = true
             }

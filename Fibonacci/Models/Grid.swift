@@ -30,11 +30,13 @@ class Grid: NSObject {
         super.init()
 
         // Set up the grid with all empty cells.
-        let emptyCell = Cell(position: PositionMake(0, 0))
-        grid = Array(repeating: [emptyCell], count: dimension)
+//        let emptyCell = Cell(position: PositionMake(0, 0))
+//        grid = Array(repeating: [emptyCell], count: dimension)
+        grid = [[Cell]]()
 
         for i in 0..<dimension {
-            var array = Array(repeating: emptyCell, count: dimension)
+//            var array = Array(repeating: emptyCell, count: dimension)
+            var array = [Cell]()
             for j in 0..<dimension {
                 array.append(Cell(position: PositionMake(i, j)))
             }
