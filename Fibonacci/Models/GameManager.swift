@@ -30,17 +30,17 @@ func iterate(value: Int, countUp: Bool, upper: Int, lower: Int) -> Bool {
 }
 
 class GameManager: NSObject {
-    /** True if game over. */
-    private var over = false
-
     /** True if won game. */
     private var won = false
 
-    /** True if user chooses to keep playing after winning. */
-    private var keepPlaying = false
+    /** True if game over. */
+    private var over = false
 
     /** The current score. */
     private var score: Int = 0
+
+    /** True if user chooses to keep playing after winning. */
+    private var keepPlaying = false
 
     /** The points earned by the user in the current round. */
     private var pendingScore: Int = 0
@@ -63,17 +63,17 @@ class GameManager: NSObject {
             grid?.removeAllTiles(animated: false)
         }
 
-        if !(grid != nil) || grid?.dimension != GSTATE.dimension {
+        if grid == nil || grid?.dimension != GSTATE.dimension {
             grid = Grid(dimension: GSTATE.dimension)
             grid?.scene = scene!
         }
 
-        scene?.loadBoard(with: grid)
+        scene?.loadBoard(with: grid!)
 
         // Set the initial state for the game.
         score = 0
-        over = false
         won = false
+        over = false
         keepPlaying = false
 
         // Existing tile removal is async and happens in the next screen refresh, so we'd wait a bit.
@@ -206,13 +206,13 @@ class GameManager: NSObject {
         }, reverseOrder: reverse)
 
         // Increment score.
-        materializePendingScore()
+        self.materializePendingScore()
 
         // Check post-move status.
-        if !keepPlaying && won {
+        if !self.keepPlaying && self.won {
             // We set `keepPlaying` to YES. If the user decides not to keep playing,
             // we will be starting a new game, so the current state is no longer relevant.
-            keepPlaying = true
+            self.keepPlaying = true
             grid?.scene.controller?.endGame(true)
         }
 

@@ -19,7 +19,7 @@ class Scene: SKScene {
     weak var controller: ViewController?
 
     /** The game manager that controls all the logic of the game. */
-    private var manager: GameManager?
+    private var manager: GameManager = GameManager()
 
     /**
      * Each swipe triggers at most one action, and we don't wait the swipe to
@@ -32,16 +32,7 @@ class Scene: SKScene {
     /** The current board node. */
     private var board: SKSpriteNode?
 
-    override init(size: CGSize) {
-        super.init(size: size)
-        manager = GameManager()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func loadBoard(with grid: Grid?) {
+    func loadBoard(with grid: Grid) {
         // Remove the current board if there is one.
         if board != nil {
             board?.removeFromParent()
@@ -56,7 +47,7 @@ class Scene: SKScene {
 
         board = SKSpriteNode(texture: backgroundTexture)
         board?.setScale(1 / UIScreen.main.scale)
-        //This solves the Scaling problem in 6Plus and 6S Plus
+        // This solves the Scaling problem in 6Plus and 6S Plus
         board?.position = CGPoint(x: frame.midX, y: frame.midY)
         if let aBoard = board {
             addChild(aBoard)
@@ -64,7 +55,7 @@ class Scene: SKScene {
     }
 
     func startNewGame() {
-        manager?.startNewSession(with: self)
+        manager.startNewSession(with: self)
     }
 
     // MARK: - Swipe handling
@@ -109,12 +100,12 @@ class Scene: SKScene {
         // We only accept horizontal or vertical swipes, but not diagonal ones.
         if Double(absX) > Double(absY) * VALID_SWIPE_DIRECTION_THRESHOLD {
             translation.x < 0
-            ? manager?.move(to: Direction.left)
-            : manager?.move(to: Direction.right)
+            ? manager.move(to: Direction.left)
+            : manager.move(to: Direction.right)
         } else if Double(absY) > Double(absX) * VALID_SWIPE_DIRECTION_THRESHOLD {
             translation.y < 0
-            ? manager?.move(to: Direction.up)
-            : manager?.move(to: Direction.down)
+            ? manager.move(to: Direction.up)
+            : manager.move(to: Direction.down)
         }
 
         hasPendingSwipe = false

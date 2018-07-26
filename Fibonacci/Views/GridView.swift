@@ -36,14 +36,14 @@ class GridView: UIView {
      *
      * @param grid The grid object that the image bases on.
      */
-    class func gridImage(with grid: Grid?) -> UIImage? {
+    class func gridImage(with grid: Grid) -> UIImage? {
         let backgroundView = UIView(frame: UIScreen.main.bounds)
         backgroundView.backgroundColor = GSTATE.backgroundColor()
 
         let view = GridView()
         backgroundView.addSubview(view)
 
-        grid?.forEach({ position in
+        grid.forEach({ position in
             let layer = CALayer()
             let point: CGPoint = GSTATE.locationOf(position)
             var frame: CGRect = layer.frame
