@@ -109,84 +109,82 @@ class GameManager: NSObject {
 
         if direction == Direction.up || direction == Direction.down {
             grid?.forEach({ position in
-                if (tile = grid?.tile(at: position)) != nil {
-                    // Find farthest position to move to.
-                    var target = position.x
-                    var i = position.x + unit
+                // Find farthest position to move to.
+                tile = grid?.tile(at: position)
+                var i = position.x + unit
+                var target = position.x
 
-                    while iterate(value: i, countUp: reverse, upper: (grid?.dimension)!, lower: -1) {
-                        let t: Tile? = grid?.tile(at: PositionMake(i, position.y))
+                while iterate(value: i, countUp: reverse, upper: (grid?.dimension)!, lower: -1) {
+                    let t: Tile? = grid?.tile(at: PositionMake(i, position.y))
 
-                        // Empty cell; we can move at least to here.
-                        if t == nil {
-                            target = i
+                    // Empty cell; we can move at least to here.
+                    if t == nil {
+                        target = i
+                    } else {
+                        var level: Int = 0
+                        if GSTATE.gameType == GameType.powerOf3 {
+                            let further: Position = PositionMake(i + unit, position.y)
+                            let ft: Tile? = grid?.tile(at: further)
+                            if ft != nil {
+                                level = tile?.merge3(to: t, andTile: ft) ?? 0
+                            }
                         } else {
-                            var level: Int = 0
-                            if GSTATE.gameType == GameType.powerOf3 {
-                                let further: Position = PositionMake(i + unit, position.y)
-                                let ft: Tile? = grid?.tile(at: further)
-                                if ft != nil {
-                                    level = tile?.merge3(to: t, andTile: ft) ?? 0
-                                }
-                            } else {
-                                level = tile?.merge(to: t) ?? 0
-                            }
-
-                            if level != 0 {
-                                target = position.x
-                                pendingScore = GSTATE.value(forLevel: level)
-                            }
-
-                            break
+                            level = tile?.merge(to: t) ?? 0
                         }
 
-                        i += unit
+                        if level != 0 {
+                            target = position.x
+                            pendingScore = GSTATE.value(forLevel: level)
+                        }
+
+                        break
                     }
 
-                    // The current tile is movable.
-                    if target != position.x {
-                        tile?.move(to: grid?.cell(at: PositionMake(target, position.y)))
-                        pendingScore += 1
-                    }
+                    i += unit
+                }
+
+                // The current tile is movable.
+                if target != position.x {
+                    tile?.move(to: grid?.cell(at: PositionMake(target, position.y)))
+                    pendingScore += 1
                 }
             }, reverseOrder: reverse)
         } else {
             grid?.forEach({ position in
-                if (tile = grid?.tile(at: position)) != nil {
-                    var target = position.y
-                    var i = position.y + unit
+                tile = grid?.tile(at: position)
+                var i = position.y + unit
+                var target = position.y
 
-                    while iterate(value: i, countUp: reverse, upper: (grid?.dimension)!, lower: -1) {
-                        let t: Tile? = grid?.tile(at: PositionMake(position.x, i))
+                while iterate(value: i, countUp: reverse, upper: (grid?.dimension)!, lower: -1) {
+                    let t: Tile? = grid?.tile(at: PositionMake(position.x, i))
 
-                        if t == nil {
-                            target = i
+                    if t == nil {
+                        target = i
+                    } else {
+                        var level: Int = 0
+                        if GSTATE.gameType == GameType.powerOf3 {
+                            let further: Position = PositionMake(position.x, i + unit)
+                            let ft: Tile? = grid?.tile(at: further)
+                            if ft != nil {
+                                level = tile?.merge3(to: t, andTile: ft) ?? 0
+                            }
                         } else {
-                            var level: Int = 0
-                            if GSTATE.gameType == GameType.powerOf3 {
-                                let further: Position = PositionMake(position.x, i + unit)
-                                let ft: Tile? = grid?.tile(at: further)
-                                if ft != nil {
-                                    level = tile?.merge3(to: t, andTile: ft) ?? 0
-                                }
-                            } else {
-                                level = tile?.merge(to: t) ?? 0
-                            }
-                            if level != 0 {
-                                target = position.y
-                                pendingScore = GSTATE.value(forLevel: level)
-                            }
-                            break
+                            level = tile?.merge(to: t) ?? 0
                         }
-
-                        i += unit
+                        if level != 0 {
+                            target = position.y
+                            pendingScore = GSTATE.value(forLevel: level)
+                        }
+                        break
                     }
 
-                    // The current tile is movable.
-                    if target != position.y {
-                        tile?.move(to: grid?.cell(at: PositionMake(position.x, target)))
-                        pendingScore += 1
-                    }
+                    i += unit
+                }
+
+                // The current tile is movable.
+                if target != position.y {
+                    tile?.move(to: grid?.cell(at: PositionMake(position.x, target)))
+                    pendingScore += 1
                 }
             }, reverseOrder: reverse)
         }
