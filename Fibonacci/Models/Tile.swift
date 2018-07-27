@@ -92,7 +92,7 @@ class Tile: SKShapeNode {
             y: Int(origin.y) + GSTATE.tileSize() / 2
         )
         tile.setScale(0)
-        cell?.tile = tile
+        cell?.setTile(tile)
         return tile
     }
 
@@ -102,7 +102,7 @@ class Tile: SKShapeNode {
         // Check if the tile is still registered with its parent cell, and if so, remove it.
         // We don't really care about self.cell, because that is a weak pointer.
         if cell?.tile == self {
-            cell?.tile = nil
+            cell?.setTile(nil)
         }
     }
 
@@ -216,8 +216,8 @@ class Tile: SKShapeNode {
             to: GSTATE.locationOf((cell?.position)!),
             duration: TimeInterval(GSTATE.animationDuration)
         ))
-        self.cell?.tile = nil
-        cell?.tile = self
+        self.cell?.setTile(nil)
+        cell?.setTile(self)
     }
 
     /**

@@ -43,13 +43,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = GSTATE.scoreBoardColor()
+        self.navigationController?.navigationBar.tintColor = GSTATE.scoreBoardColor()
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +60,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Settings Detail Segue" {
             let sdvc = segue.destination as? SettingsDetailViewController
-            let index: Int? = tableView.indexPathForSelectedRow?.row
+            let index: Int? = self.tableView.indexPathForSelectedRow?.row
             sdvc?.title = options[index ?? 0]
             sdvc?.footer = optionsNotes[index ?? 0]
             sdvc?.options = optionSelections[index ?? 0]
@@ -74,12 +74,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section != 0 ? 1 : options.count
+        return section != 0 ? 1 : self.options.count
     }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
-            return "Please note: Changing the settings above would restart the game."
+            return "Note: Changing these settings would restart the game."
         }
         return ""
     }
@@ -97,8 +97,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell?.detailTextLabel?.textColor = GSTATE.scoreBoardColor()
         }
 
-        if let aCell = cell {
-            return aCell
+        if let acell = cell {
+            return acell
         }
 
         return UITableViewCell()

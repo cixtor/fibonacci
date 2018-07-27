@@ -18,7 +18,7 @@ class SettingsDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = GSTATE.scoreBoardColor()
+        self.navigationController?.navigationBar.tintColor = GSTATE.scoreBoardColor()
     }
 
     // MARK: - Table view data source
@@ -28,25 +28,31 @@ class SettingsDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return options.count
+        return self.options.count
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return footer
+        return self.footer
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Settings Detail Cell", for: indexPath)
 
         cell.textLabel?.text = options[indexPath.row]
-        cell.accessoryType = (Settings.integer(forKey: title!) == indexPath.row) ? .checkmark : .none
         cell.tintColor = GSTATE.scoreBoardColor()
+        cell.accessoryType = .none
+
+        if let uititle = self.title {
+            if Settings.integer(forKey: uititle) == indexPath.row {
+                cell.accessoryType = .checkmark
+            }
+        }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Settings.set(indexPath.row, forKey: title!)
+        Settings.set(indexPath.row, forKey: self.title ?? "")
         self.tableView.reloadData()
         GSTATE.needRefresh = true
     }

@@ -30,12 +30,9 @@ class Grid: NSObject {
         super.init()
 
         // Set up the grid with all empty cells.
-//        let emptyCell = Cell(position: PositionMake(0, 0))
-//        grid = Array(repeating: [emptyCell], count: dimension)
         grid = [[Cell]]()
 
         for i in 0..<dimension {
-//            var array = Array(repeating: emptyCell, count: dimension)
             var array = [Cell]()
             for j in 0..<dimension {
                 array.append(Cell(position: PositionMake(i, j)))
@@ -103,22 +100,6 @@ class Grid: NSObject {
         return cell != nil ? cell?.tile : nil
     }
 
-    /**
-     * Returns a randomly chosen cell that's available.
-     *
-     * @return A randomly chosen available cell, or nil if no cell is available.
-     */
-    func randomAvailableCell() -> Cell? {
-        let cells = self.availableCells()
-
-        if cells.count == 0 {
-            return nil
-        }
-
-        let index = arc4random_uniform(UInt32(cells.count))
-        return cells[Int(index)]
-    }
-
     // MARK: - Cell availability
 
     /**
@@ -131,12 +112,27 @@ class Grid: NSObject {
     }
 
     /**
+     * Returns a randomly chosen cell that's available.
+     *
+     * @return A randomly chosen available cell, or nil if no cell is available.
+     */
+    func randomAvailableCell() -> Cell? {
+        let cells = self.availableCells()
+
+        if cells.count == 0 {
+            return nil
+        }
+
+        return cells[Int(arc4random_uniform(UInt32(cells.count)))]
+    }
+
+    /**
      * Returns all available cells in an array.
      *
      * @return The array of all available cells. If no cell is available, returns empty array.
      */
     func availableCells() -> [Cell] {
-        var array: [Cell] = []
+        var array = [Cell]()
 
         array.reserveCapacity(dimension * dimension)
 
@@ -160,17 +156,23 @@ class Grid: NSObject {
     func insertTileAtRandomAvailablePosition(withDelay delay: Bool) {
         let cell: Cell? = randomAvailableCell()
 
-        if cell != nil {
-            let tile = Tile.insertNewTile(to: cell)
-            scene.addChild(tile)
-            let delayAction = delay ? SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration * 3)) : SKAction.wait(forDuration: 0)
-            let move = SKAction.move(
-                by: CGVector(dx: -GSTATE.tileSize() / 2, dy: -GSTATE.tileSize() / 2),
-                duration: TimeInterval(GSTATE.animationDuration)
-            )
-            let scale = SKAction.scale(to: 1, duration: TimeInterval(GSTATE.animationDuration))
-            tile.run(SKAction.sequence([delayAction, SKAction.group([move, scale])]))
+        if cell == nil {
+            return
         }
+
+        let tile = Tile.insertNewTile(to: cell)
+
+        scene.addChild(tile)
+
+        let delayAction = delay
+            ? SKAction.wait(forDuration: TimeInterval(GSTATE.animationDuration * 3))
+            : SKAction.wait(forDuration: 0)
+        let move = SKAction.move(
+            by: CGVector(dx: -GSTATE.tileSize() / 2, dy: -GSTATE.tileSize() / 2),
+            duration: TimeInterval(GSTATE.animationDuration)
+        )
+        let scale = SKAction.scale(to: 1, duration: TimeInterval(GSTATE.animationDuration))
+        tile.run(SKAction.sequence([delayAction, SKAction.group([move, scale])]))
     }
 
     /**

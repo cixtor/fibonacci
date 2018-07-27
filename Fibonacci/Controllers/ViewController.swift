@@ -38,17 +38,15 @@ class ViewController: UIViewController {
         overlayBackground.isHidden = true
 
         // Configure the view.
-        let skView = view as? SKView
+        let skView = self.view as! SKView
 
         // Create and configure the scene.
-        let scene = Scene(size: skView?.bounds.size ?? CGSize.zero)
+        let scene = Scene(size: skView.bounds.size)
         scene.scaleMode = SKSceneScaleMode.aspectFill
 
         // Present the scene.
-        skView?.presentScene(scene)
-
+        skView.presentScene(scene)
         self.updateScore(0)
-
         scene.startNewGame()
 
         self.scene = scene
@@ -60,16 +58,10 @@ class ViewController: UIViewController {
         bestView.updateAppearance()
 
         restartButton.backgroundColor = GSTATE.buttonColor()
-
-        if let aSize = UIFont(name: GSTATE.boldFontName(), size: 14) {
-            restartButton.titleLabel?.font = aSize
-        }
+        restartButton.titleLabel?.font = UIFont(name: GSTATE.boldFontName(), size: 14)
 
         settingsButton.backgroundColor = GSTATE.buttonColor()
-
-        if let aSize = UIFont(name: GSTATE.boldFontName(), size: 14) {
-            settingsButton.titleLabel?.font = aSize
-        }
+        settingsButton.titleLabel?.font = UIFont(name: GSTATE.boldFontName(), size: 14)
 
         targetScore.textColor = GSTATE.buttonColor()
 
@@ -90,14 +82,8 @@ class ViewController: UIViewController {
         subtitle.text = "Join the numbers to get to \(target)!"
 
         overlay.message.font = UIFont(name: GSTATE.boldFontName(), size: 36)
-
-        if let aSize = UIFont(name: GSTATE.boldFontName(), size: 17) {
-            overlay.keepPlaying.titleLabel?.font = aSize
-        }
-
-        if let aSize = UIFont(name: GSTATE.boldFontName(), size: 17) {
-            overlay.restartGame.titleLabel?.font = aSize
-        }
+        overlay.keepPlaying.titleLabel?.font = UIFont(name: GSTATE.boldFontName(), size: 17)
+        overlay.restartGame.titleLabel?.font = UIFont(name: GSTATE.boldFontName(), size: 17)
 
         overlay.message.textColor = GSTATE.buttonColor()
         overlay.keepPlaying.setTitleColor(GSTATE.buttonColor(), for: .normal)
@@ -115,13 +101,12 @@ class ViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pause Sprite Kit. Otherwise the dismissal of the modal view would lag.
-        (view as? SKView)?.isPaused = true
+        (view as! SKView).isPaused = true
     }
 
     @IBAction func restart(_ sender: Any) {
         self.hideOverlay()
         self.updateScore(0)
-
         scene.startNewGame()
     }
 
@@ -130,12 +115,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func done(_ segue: UIStoryboardSegue) {
-        (view as? SKView)?.isPaused = false
+        (view as! SKView).isPaused = false
 
         if GSTATE.needRefresh {
             GSTATE.load()
-            updateState()
-            updateScore(0)
+            self.updateState()
+            self.updateScore(0)
             scene.startNewGame()
         }
     }
@@ -143,16 +128,15 @@ class ViewController: UIViewController {
     func endGame(_ won: Bool) {
         overlay.alpha = 0
         overlay.isHidden = false
-
-        overlayBackground.isHidden = false
         overlayBackground.alpha = 0
+        overlayBackground.isHidden = false
 
-        if !won {
-            overlay.keepPlaying.isHidden = true
-            overlay.message.text = "Game Over"
-        } else {
+        if won {
             overlay.keepPlaying.isHidden = false
             overlay.message.text = "You Win!"
+        } else {
+            overlay.keepPlaying.isHidden = true
+            overlay.message.text = "Game Over"
         }
 
         // Fake the overlay background as a mask on the board.
@@ -168,21 +152,23 @@ class ViewController: UIViewController {
             self.overlayBackground.alpha = 1
         }) { _ in
             // Freeze the current game.
-            (self.view as? SKView)?.isPaused = true
+            (self.view as! SKView).isPaused = true
         }
     }
 
     func hideOverlay() {
-        (view as? SKView)?.isPaused = false
+        (view as! SKView).isPaused = false
 
-        if !overlay.isHidden {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.overlay.alpha = 0
-                self.overlayBackground.alpha = 0
-            }) { _ in
-                self.overlay.isHidden = true
-                self.overlayBackground.isHidden = true
-            }
+        if overlay.isHidden {
+            return
+        }
+
+        UIView.animate(withDuration: 0.5, animations: {
+            self.overlay.alpha = 0
+            self.overlayBackground.alpha = 0
+        }) { _ in
+            self.overlay.isHidden = true
+            self.overlayBackground.isHidden = true
         }
     }
 

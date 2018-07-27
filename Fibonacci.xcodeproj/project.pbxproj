@@ -86,14 +86,14 @@
 		81C16E42210D4040002E2E2D /* Fibonacci */ = {
 			isa = PBXGroup;
 			children = (
+				81C16E43210D4040002E2E2D /* AppDelegate.swift */,
 				81C16E4A210D4042002E2E2D /* Assets.xcassets */,
 				81C16E77210D5B0D002E2E2D /* Controllers */,
+				81C16E4F210D4042002E2E2D /* Info.plist */,
 				81C16E7B210D5B93002E2E2D /* Models */,
 				81C16E79210D5B48002E2E2D /* Storyboards */,
 				81C16E7A210D5B7D002E2E2D /* Themes */,
 				81C16E78210D5B40002E2E2D /* Views */,
-				81C16E43210D4040002E2E2D /* AppDelegate.swift */,
-				81C16E4F210D4042002E2E2D /* Info.plist */,
 			);
 			path = Fibonacci;
 			sourceTree = "<group>";
@@ -121,8 +121,8 @@
 		81C16E79210D5B48002E2E2D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				81C16E47210D4040002E2E2D /* Main.storyboard */,
 				81C16E4C210D4042002E2E2D /* LaunchScreen.storyboard */,
+				81C16E47210D4040002E2E2D /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -130,10 +130,10 @@
 		81C16E7A210D5B7D002E2E2D /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				81C16E6F210D5A15002E2E2D /* Theme.swift */,
 				81C16E71210D5A52002E2E2D /* DefaultTheme.swift */,
-				81C16E73210D5A96002E2E2D /* VibrantTheme.swift */,
 				81C16E75210D5AC5002E2E2D /* JoyfulTheme.swift */,
+				81C16E6F210D5A15002E2E2D /* Theme.swift */,
+				81C16E73210D5A96002E2E2D /* VibrantTheme.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -141,11 +141,11 @@
 		81C16E7B210D5B93002E2E2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				81C16E5D210D495E002E2E2D /* Cell.swift */,
 				81C16E5B210D48D4002E2E2D /* GameManager.swift */,
 				81C16E67210D53B6002E2E2D /* GlobalState.swift */,
-				81C16E5D210D495E002E2E2D /* Cell.swift */,
-				81C16E69210D53F1002E2E2D /* Position.swift */,
 				81C16E5F210D4B97002E2E2D /* Grid.swift */,
+				81C16E69210D53F1002E2E2D /* Position.swift */,
 				81C16E61210D4CF0002E2E2D /* Scene.swift */,
 				81C16E63210D4ED2002E2E2D /* Tile.swift */,
 			);

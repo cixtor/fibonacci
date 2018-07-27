@@ -10,7 +10,7 @@ import Foundation
 
 class Cell: NSObject {
     /** The position of the cell. */
-    var position: Position?
+    var position: Position
 
     /** The tile in the cell, if any. */
     var tile: Tile?
@@ -21,9 +21,9 @@ class Cell: NSObject {
      * @param position The position of the cell.
      */
     init(position: Position) {
-        super.init()
         self.position = position
-        tile = nil
+        self.tile = nil
+        super.init()
     }
 
     func setTile(_ tile: Tile?) {
