@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Foundation
 
 let GSTATE = GlobalState()
 let Settings = UserDefaults.standard

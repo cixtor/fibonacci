@@ -262,8 +262,10 @@ class GameManager: NSObject {
      * @return YES if there are adjacent matches available.
      */
     func adjacentMatchesAvailable() -> Bool {
-        for i in 0..<(grid?.dimension)! {
-            for j in 0..<(grid?.dimension)! {
+        let limit: Int = (grid?.dimension)!
+
+        for i in 0..<limit {
+            for j in 0..<limit {
                 // Due to symmetry, we only need to check for tiles to the right and down.
                 let tile: Tile? = grid?.tile(at: PositionMake(i, j))
 
@@ -274,21 +276,18 @@ class GameManager: NSObject {
                     continue
                 }
 
+                let t: Tile = tile!
+                let a: Bool = t.canMerge(with: grid?.tile(at: PositionMake(i + 1, j)))
+                let b: Bool = t.canMerge(with: grid?.tile(at: PositionMake(i + 2, j)))
+                let c: Bool = t.canMerge(with: grid?.tile(at: PositionMake(i, j + 1)))
+                let d: Bool = t.canMerge(with: grid?.tile(at: PositionMake(i, j + 2)))
+
                 if GSTATE.gameType == GameType.powerOf3 {
-                    if (
-                        tile?.canMerge(with: grid?.tile(at: PositionMake(i + 1, j))) != nil
-                        && tile?.canMerge(with: grid?.tile(at: PositionMake(i + 2, j))) != nil
-                    ) || (
-                        tile?.canMerge(with: grid?.tile(at: PositionMake(i, j + 1))) != nil
-                        && tile?.canMerge(with: grid?.tile(at: PositionMake(i, j + 2))) != nil
-                    ) {
+                    if (a && b) || (c && d) {
                         return true
                     }
-                } else {
-                    if tile?.canMerge(with: grid?.tile(at: PositionMake(i + 1, j))) != nil
-                    || tile?.canMerge(with: grid?.tile(at: PositionMake(i, j + 1))) != nil {
-                        return true
-                    }
+                } else if a || c {
+                    return true
                 }
             }
         }
