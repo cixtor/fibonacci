@@ -12,7 +12,7 @@ class SettingsDetailViewController: UITableViewController {
     var footer = ""
     var options: [String] = []
 
-    convenience override init(style: UITableViewStyle) {
+    convenience override init(style: UITableView.Style) {
         self.init(style: style)
     }
 

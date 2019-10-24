@@ -78,7 +78,7 @@ class GameManager: NSObject {
 
         // Existing tile removal is async and happens in the next screen refresh, so we'd wait a bit.
         addTileDisplayLink = CADisplayLink(target: self, selector: #selector(self.addTwoRandomTiles))
-        addTileDisplayLink?.add(to: RunLoop.current, forMode: .defaultRunLoopMode)
+        addTileDisplayLink?.add(to: RunLoop.current, forMode: RunLoop.Mode.default)
     }
 
     @objc func addTwoRandomTiles() {

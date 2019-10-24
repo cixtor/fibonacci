@@ -89,8 +89,8 @@ class Scene: SKScene {
             return
         }
 
-        let absX = CGFloat(fabs(Float(translation.x)))
-        let absY = CGFloat(fabs(Float(translation.y)))
+        let absX = CGFloat(abs(Float(translation.x)))
+        let absY = CGFloat(abs(Float(translation.y)))
 
         // Swipe too short. Don't do anything.
         if max(absX, absY) < CGFloat(EFFECTIVE_SWIPE_DISTANCE_THRESHOLD) {
